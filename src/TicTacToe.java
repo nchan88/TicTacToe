@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class TicTacToe
 {
+    private TicTacToeViewer window;
     /** Board Markers **/
     public static final String X_MARKER = "X";
     public static final String O_MARKER = "O";
@@ -56,6 +57,8 @@ public class TicTacToe
         this.winner = BLANK;
         this.winIndex = -1;
         this.winDirection = -1;
+        // Initializes View
+        this.window = new TicTacToeViewer(this);
     }
 
     /******************** Methods You May Find Helpful ********************/
@@ -149,9 +152,12 @@ public class TicTacToe
     private void takeTurn(int row, int col) {
         if(this.turn % 2 == 0) {
             this.board[row][col].setMarker(X_MARKER);
+            //repains the window everytime a marker is set
+            window.repaint();
         }
         else {
             this.board[row][col].setMarker(O_MARKER);
+            window.repaint();
         }
         this.turn++;
     }
